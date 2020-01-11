@@ -44,14 +44,14 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    public void register_passenger(){
+    public void register_passenger() {
 //        create API object
         API service = RetrofitClient.createService(API.class);
 
 //        create RegisterRequest object
         RegisterRequest registerRequest = new RegisterRequest();
 
-        registerRequest.setPassenger_mail("themiya.gunasekara95@gmail.com");
+        registerRequest.setPassenger_mail("dulanwirajith1995@gmail.com");
         registerRequest.setFirst_name("Themiya");
         registerRequest.setLast_name("Gunasekara");
         registerRequest.setGender("male");
@@ -66,13 +66,17 @@ public class MainActivity extends AppCompatActivity {
         isRegisterSuccessful.enqueue(new Callback<RegisterResponse>() {
             @Override
             public void onResponse(Call<RegisterResponse> call, Response<RegisterResponse> response) {
-                Context context = getApplicationContext();
-                CharSequence text = response.body().getMessage().toString();
-                int duration = Toast.LENGTH_SHORT;
+                if (response.isSuccessful()) {
+                    Toast.makeText(MainActivity.this, response.body().getMessage(), Toast.LENGTH_LONG).show();
 
-//                System.out.println("response body :"+response.body().getMessage());
-                Toast toast = Toast.makeText(context, text, duration);
-                toast.show();
+                } else {
+
+                }
+
+                if (response.code() == 500) {
+                    Toast.makeText(MainActivity.this, String.format("%s", response.message()), Toast.LENGTH_LONG).show();
+
+                }
             }
 
             @Override
