@@ -52,10 +52,10 @@ public class MainActivity extends AppCompatActivity {
         RegisterRequest registerRequest = new RegisterRequest();
 
         registerRequest.setPassenger_mail("dulanwirajith1995@gmail.com");
-        registerRequest.setFirst_name("Themiya");
-        registerRequest.setLast_name("Gunasekara");
+        registerRequest.setFirst_name("Dulan");
+        registerRequest.setLast_name("Wirajith");
         registerRequest.setGender("male");
-        registerRequest.setContact_no("0770471501");
+        registerRequest.setContact_no("077123456");
         registerRequest.setBirthday("1995/06/11");
         registerRequest.setPassword("123456");
 
