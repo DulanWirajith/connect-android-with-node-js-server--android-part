@@ -13,6 +13,8 @@ import com.example.connectandroidwithnodeserver.model.RegisterResponse;
 import com.example.connectandroidwithnodeserver.remote_connection.API;
 import com.example.connectandroidwithnodeserver.remote_connection.RetrofitClient;
 
+import org.json.JSONObject;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -70,7 +72,14 @@ public class MainActivity extends AppCompatActivity {
                     Toast.makeText(MainActivity.this, response.body().getMessage(), Toast.LENGTH_LONG).show();
 
                 } else {
-
+//                    get error messages
+                    try {
+                        JSONObject jObjError = new JSONObject(response.errorBody().string());
+                        String message=jObjError.getString("message");
+                        Toast.makeText(MainActivity.this, message, Toast.LENGTH_LONG).show();
+                    } catch (Exception e) {
+                        Toast.makeText(MainActivity.this, e.getMessage(), Toast.LENGTH_LONG).show();
+                    }
                 }
 
                 if (response.code() == 500) {
